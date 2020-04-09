@@ -15,12 +15,13 @@ IMAGE_OVERHEAD_FACTOR ?= "1.3"
 
 require conf/machine/include/socfpga.inc
 
-IMAGE_BOOT_FILES_append = "de10-nano.rbf LICENSE.de10-nano.rbf de10_nano_hdmi_config.bin dump_adv7513_edid.bin dump_adv7513_regs.bin STARTUP.BMP STARTUP.BMP.LICENSE boot.scr"
+IMAGE_BOOT_FILES_append = "${KERNEL_DEVICETREE} ${KERNEL_IMAGETYPE} LICENSE.de10-nano.rbf de10_nano_hdmi_config.bin dump_adv7513_edid.bin dump_adv7513_regs.bin STARTUP.BMP STARTUP.BMP.LICENSE boot.scr"
 
 INHERIT += " rootfs_ipk "
 
 # This is to remove unmaintained packages which pose security/support issues
-BAD_RECOMMENDATIONS = " libnss-mdns cpufrequtils cpufreq-tweaks fbset consolekit wireless-tools "
+#BAD_RECOMMENDATIONS = " libnss-mdns cpufrequtils cpufreq-tweaks fbset consolekit wireless-tools "
+BAD_RECOMMENDATIONS = " libnss-mdns cpufrequtils cpufreq-tweaks fbset consolekit "
 RDEPENDS_pulseaudio-module-console-kit_remove = "consolekit"
 
 DISTRO_FEATURES_remove = "opengl"                                               
